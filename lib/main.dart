@@ -79,26 +79,49 @@ class _MyHomePageState extends State<MyHomePage> {
               titleCentered: true,
             ),
             calendarStyle: const CalendarStyle(
-              weekendTextStyle: TextStyle(
-                color: Colors.red,
+              markersAlignment: Alignment.center,
+              markersOffset: PositionedOffset(),
+              todayTextStyle: TextStyle(
+                color: Colors.black,
               ),
               todayDecoration: BoxDecoration(
-                color: Colors.blue,
-                shape: BoxShape.circle,
+                color: Colors.transparent,
+                shape: BoxShape.rectangle,
+              ),
+              selectedTextStyle: TextStyle(
+                color: Colors.black,
               ),
               selectedDecoration: BoxDecoration(
-                color: Colors.orange,
-                shape: BoxShape.circle,
+                color: Colors.transparent,
+                shape: BoxShape.rectangle,
               ),
             ),
             calendarBuilders: CalendarBuilders(
+              defaultBuilder: (context, day, focusedDay) => Text(
+                "${day.day}",
+                style: TextStyle(
+                  color:
+                      selectedEvents[day] == null ? Colors.black : Colors.red,
+                ),
+              ),
+              selectedBuilder: (context, day, focusedDay) => Text(
+                "${day.day}",
+                style: TextStyle(
+                  color:
+                      selectedEvents[day] == null ? Colors.orange : Colors.red,
+                ),
+              ),
+              todayBuilder: (context, day, focusedDay) => Text(
+                "${day.day}",
+                style: TextStyle(
+                  color: selectedEvents[day] == null ? Colors.blue : Colors.red,
+                ),
+              ),
               markerBuilder: (context, day, events) =>
                   events.isNotEmpty && events.length >= 4
-                      ? Container(
-                          width: 24,
-                          height: 24,
-                          alignment: Alignment.center,
-                          child: const Text(
+                      ? const Positioned(
+                          bottom: 5,
+                          child: Text(
                             'Penuh',
                             style: TextStyle(
                               color: Colors.red,
