@@ -91,6 +91,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 shape: BoxShape.circle,
               ),
             ),
+            calendarBuilders: CalendarBuilders(
+              markerBuilder: (context, day, events) =>
+                  events.isNotEmpty && events.length >= 4
+                      ? Container(
+                          width: 24,
+                          height: 24,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Penuh',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 8,
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+            ),
             availableGestures: AvailableGestures.all,
             selectedDayPredicate: (day) => isSameDay(day, today),
             startingDayOfWeek: StartingDayOfWeek.monday,
