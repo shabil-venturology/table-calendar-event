@@ -100,21 +100,28 @@ class _MyHomePageState extends State<MyHomePage> {
               defaultBuilder: (context, day, focusedDay) => Text(
                 "${day.day}",
                 style: TextStyle(
-                  color:
-                      selectedEvents[day] == null ? Colors.black : Colors.red,
+                  color: selectedEvents[day] != null &&
+                          selectedEvents[day]!.length >= 4
+                      ? Colors.red
+                      : Colors.black,
                 ),
               ),
               selectedBuilder: (context, day, focusedDay) => Text(
                 "${day.day}",
                 style: TextStyle(
-                  color:
-                      selectedEvents[day] == null ? Colors.orange : Colors.red,
+                  color: selectedEvents[day] != null &&
+                          selectedEvents[day]!.length >= 4
+                      ? Colors.red
+                      : Colors.orange,
                 ),
               ),
               todayBuilder: (context, day, focusedDay) => Text(
                 "${day.day}",
                 style: TextStyle(
-                  color: selectedEvents[day] == null ? Colors.blue : Colors.red,
+                  color: selectedEvents[day] != null &&
+                          selectedEvents[day]!.length >= 4
+                      ? Colors.red
+                      : Colors.blue,
                 ),
               ),
               markerBuilder: (context, day, events) =>
